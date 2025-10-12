@@ -1,7 +1,7 @@
 <template>
         <ul class="todo-main">
           <item-kit 
-          v-for="todoObj in todoList" :key="todoObj.id" :todo="todoObj" :checkTodo="checkTodo"/>
+          v-for="todoObj in todoList" :key="todoObj.id" :todo="todoObj" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
       </ul>
 </template>
 
@@ -10,7 +10,7 @@ import ItemKit from './ItemKit.vue';
 export default {
   name:'tabulateKit',
   components:{ItemKit},
-  props:['todoList','checkTodo']
+  props:['todoList','checkTodo','deleteTodo']
 }
 </script>
 

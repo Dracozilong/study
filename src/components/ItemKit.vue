@@ -4,17 +4,23 @@
             <input type="checkbox" :checked = "todo.isCompleted" @change="handleCheck(todo.id)"/>
             <span>{{todo.title}}</span>
           </label>
-          <button class="btn btn-danger" style="display:none">删除</button>
+          <button class="btn btn-danger" @click="handleDel(todo.id)">删除</button>
         </li>
 </template>
 <script>
 export default {
     name:'itemKit',
     // 申明 接收todo对象
-    props:['todo','checkTodo'],
+    props:['todo','checkTodo','deleteTodo'],
     methods:{
+      // 勾选/取消勾选
         handleCheck(id){
             this.checkTodo(id)
+        },
+        handleDel(id){
+          if(confirm('确定删除吗?')){
+            this.deleteTodo(id)
+          }
         }
     }
 }
@@ -53,5 +59,11 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+li:hover{
+  background-color: #ddd;
+}
+li:hover button{
+  display:block;
 }
 </style>

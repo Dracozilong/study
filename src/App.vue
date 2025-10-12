@@ -11,7 +11,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <top-kit :addTodo="addTodo"/>
-      <tabulate-kit :todoList="todoList" :checkTodo="checkTodo"/>
+      <tabulate-kit :todoList="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
       <bottom-kit />
     </div>
   </div>
@@ -61,8 +61,10 @@ export default {
               console.log('zhangqs',todo.title,todo.isCompleted)
             }
           })
+        },
+        deleteTodo(id){
+          this.todoList = this.todoList.filter(todo => todo.id !== id)
         }
-
       }
     }
   // components:{SchoolInfo,NinJaInfo},
