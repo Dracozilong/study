@@ -12,7 +12,7 @@
     <div class="todo-wrap">
       <top-kit :addTodo="addTodo"/>
       <tabulate-kit :todoList="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-      <bottom-kit />
+      <bottom-kit :todoList="todoList"/>
     </div>
   </div>
 </div>

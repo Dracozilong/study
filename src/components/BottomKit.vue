@@ -4,7 +4,7 @@
           <input type="checkbox"/>
         </label>
         <span>
-          <span>已完成0</span> / 全部2
+          <span>已完成{{computeTotal}}</span> / 全部{{todoList.length}}
         </span>
         <button class="btn btn-danger">清除已完成任务 </button>
       </div>
@@ -12,7 +12,13 @@
 
 <script>
 export default {
-  name:"bottomKit"
+  name:"bottomKit",
+  props:['todoList'],
+  computed:{
+    computeTotal(){
+      return this.todoList.reduce((pre,current)=>pre + (current.isCompleted?1:0),0)
+    }
+  }
 }
 </script>
 
