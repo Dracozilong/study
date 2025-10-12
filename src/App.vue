@@ -12,7 +12,7 @@
     <div class="todo-wrap">
       <top-kit :addTodo="addTodo"/>
       <tabulate-kit :todoList="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-      <bottom-kit :todoList="todoList"/>
+      <bottom-kit :todoList="todoList" :checkAllTodo="checkAllTodo"/>
     </div>
   </div>
 </div>
@@ -46,12 +46,13 @@ export default {
           title:"嫖娼",
           isCompleted:true
         }
-      ],
+      ]
+      // todoList:JSON.parse(localStorage.getItem('todoList')) || [] 
     }
   },
       methods:{
         addTodo(data){
-          console.log('zqs',data)
+          // console.log('zqs',data)
           this.todoList.unshift(data)
         },
         checkTodo(id){
@@ -64,8 +65,20 @@ export default {
         },
         deleteTodo(id){
           this.todoList = this.todoList.filter(todo => todo.id !== id)
+        },
+        checkAllTodo(done){
+          console.log('!!!!',done)
+          console.log('&&&&&',this.todoList)
+          this.todoList.forEach((todo)=>{
+            todo.isCompleted = done
+          })
         }
-      }
+      // },
+      // watch:{
+      //   todoList(todo){
+      //     localStorage.setItem('todoList',JSON.stringify(todo))
+      //   }
+      // }
     }
   // components:{SchoolInfo,NinJaInfo},
   // data(){
@@ -80,6 +93,7 @@ export default {
   //     console.log(this.$refs.schoolInfo) // school组件的实例对象(VC)
   //   }
   // }
+}
 
 </script>
 <style>

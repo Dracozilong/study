@@ -1,10 +1,10 @@
 <template>
-          <div class="todo-footer">
+          <div class="todo-footer" v-show="total">
         <label>
-          <input type="checkbox"/>
+          <input type="checkbox" v-model="isAll"/>
         </label>
         <span>
-          <span>已完成{{computeTotal}}</span> / 全部{{todoList.length}}
+          <span>已完成{{computeTotal}}</span> / 全部{{total}}
         </span>
         <button class="btn btn-danger">清除已完成任务 </button>
       </div>
@@ -13,10 +13,23 @@
 <script>
 export default {
   name:"bottomKit",
-  props:['todoList'],
+  props:['todoList','checkAllTodo'],
   computed:{
+    total(){
+      return this.todoList.length
+    },
     computeTotal(){
-      return this.todoList.reduce((pre,current)=>pre + (current.isCompleted?1:0),0)
+      console.log('####',this.todoList)
+      return this.todoList.reduce((pre,todo)=>pre + (todo.isCompleted?1:0),0)
+    },
+    isAll:{
+      get(){
+        return this.computeTotal  === this.total && this.total > 0
+      },
+      set(value){
+        console.log('%%%',value)
+         this.checkAllTodo(value)
+      }
     }
   }
 }
