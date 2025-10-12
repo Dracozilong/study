@@ -29,37 +29,37 @@ export default {
   name:'App', 
   components:{TopKit,TabulateKit,BottomKit},
   data(){
-    return{
-        todoList:[
-        {
-          id:"001",
-          title:"吃饭",
-          isCompleted:true
-        },
-        {
-          id:"002",
-          title:"抽烟",
-          isCompleted:false
-        },
-        {
-          id:"003",
-          title:"嫖娼",
-          isCompleted:true
-        }
-      ]
-      // todoList:JSON.parse(localStorage.getItem('todoList')) || [] 
+    return {
+      //   todoList:[
+      //   {
+      //     id:"001",
+      //     title:"吃饭",
+      //     isCompleted:true
+      //   },
+      //   {
+      //     id:"002",
+      //     title:"抽烟",
+      //     isCompleted:false
+      //   },
+      //   {
+      //     id:"003",
+      //     title:"嫖娼",
+      //     isCompleted:true
+      //   }
+      // ]
+      todoList:JSON.parse(localStorage.getItem('todoList')) || []   
     }
   },
-      methods:{
+  methods:{
         addTodo(data){
-          // console.log('zqs',data)
+          console.log('zqs',data)
           this.todoList.unshift(data)
         },
         checkTodo(id){
           this.todoList.forEach((todo)=>{
             if(todo.id ===id){
+              console.log('checkTodo',todo)
               todo.isCompleted = !todo.isCompleted
-              console.log('zhangqs',todo.title,todo.isCompleted)
             }
           })
         },
@@ -67,20 +67,24 @@ export default {
           this.todoList = this.todoList.filter(todo => todo.id !== id)
         },
         checkAllTodo(done){
-          console.log('!!!!',done)
-          console.log('&&&&&',this.todoList)
           this.todoList.forEach((todo)=>{
             todo.isCompleted = done
           })
         }
-      // },
-      // watch:{
-      //   todoList(todo){
-      //     localStorage.setItem('todoList',JSON.stringify(todo))
-      //   }
-      // }
-    }
-  // components:{SchoolInfo,NinJaInfo},
+  },
+  watch:{
+        todoList:{
+          deep:true,
+          handler(todo){
+            localStorage.setItem('todoList',JSON.stringify(todo))
+          }
+        }
+  },
+  }
+</script>
+
+
+  <!-- // components:{SchoolInfo,NinJaInfo},
   // data(){
   //   return{
   //     msg:'风遁！螺旋手里剑'
@@ -92,10 +96,8 @@ export default {
   //     console.log(this.$refs.btn)   // 真实dom元素
   //     console.log(this.$refs.schoolInfo) // school组件的实例对象(VC)
   //   }
-  // }
-}
+  // }     -->
 
-</script>
 <style>
 /*base*/
 body {

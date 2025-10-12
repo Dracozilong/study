@@ -23,7 +23,7 @@ export default {
             const todoObj = {
                 id:nanoid(),
                 title:this.title,
-                isComplete:false
+                isCompleted:false
             }
             this.addTodo(todoObj)
             this.title = ''

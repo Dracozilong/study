@@ -16,10 +16,10 @@ export default {
   props:['todoList','checkAllTodo'],
   computed:{
     total(){
+      console.log('todoList.length',this.todoList.length)
       return this.todoList.length
     },
     computeTotal(){
-      console.log('####',this.todoList)
       return this.todoList.reduce((pre,todo)=>pre + (todo.isCompleted?1:0),0)
     },
     isAll:{
@@ -27,7 +27,6 @@ export default {
         return this.computeTotal  === this.total && this.total > 0
       },
       set(value){
-        console.log('%%%',value)
          this.checkAllTodo(value)
       }
     }
