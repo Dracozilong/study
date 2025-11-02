@@ -1,157 +1,31 @@
 <template>
-  <!-- <div>
-    <h1 v-text="msg" ref="title"></h1>
-    <button ref="btn" @click="showDom">点我进入尸魂界</button>
+  <div>
+    <!-- <button ref="btn" @click="showDom">点我进入尸魂界</button> -->
     <school-info ref="schoolInfo"/>
     <NinJaInfo contury="木叶" name="宇智波佐助" skill="天照"/>
     <NinJaInfo contury="木叶" name="旗木卡卡西" skill="雷切"/>
-  </div> -->
-
-  <div id="root">
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <top-kit :addTodo="addTodo"/>
-      <tabulate-kit :todoList="todoList" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-      <bottom-kit :todoList="todoList" :checkAllTodo="checkAllTodo"/>
-    </div>
   </div>
-</div>
 </template>
 
 <script>
-import BottomKit from './components/BottomKit.vue';
-import TabulateKit from './components/TabulateKit.vue';
-import TopKit from './components/TopKit.vue';
 
-// import SchoolInfo from './components/SchoolInfo.vue';
-// import NinJaInfo from './components/NinJaInfo.vue';
+import SchoolInfo from './components/SchoolInfo.vue';
+import NinJaInfo from './components/NinJaInfo.vue';
 export default {
   name:'App', 
-  components:{TopKit,TabulateKit,BottomKit},
+  components:{SchoolInfo,NinJaInfo},
   data(){
-    return {
-      //   todoList:[
-      //   {
-      //     id:"001",
-      //     title:"吃饭",
-      //     isCompleted:true
-      //   },
-      //   {
-      //     id:"002",
-      //     title:"抽烟",
-      //     isCompleted:false
-      //   },
-      //   {
-      //     id:"003",
-      //     title:"嫖娼",
-      //     isCompleted:true
-      //   }
-      // ]
-      todoList:JSON.parse(localStorage.getItem('todoList')) || []   
-    }
+
   },
   methods:{
-        addTodo(data){
-          console.log('zqs',data)
-          this.todoList.unshift(data)
-        },
-        checkTodo(id){
-          this.todoList.forEach((todo)=>{
-            if(todo.id ===id){
-              console.log('checkTodo',todo)
-              todo.isCompleted = !todo.isCompleted
-            }
-          })
-        },
-        deleteTodo(id){
-          this.todoList = this.todoList.filter(todo => todo.id !== id)
-        },
-        checkAllTodo(done){
-          this.todoList.forEach((todo)=>{
-            todo.isCompleted = done
-          })
-        }
+   
   },
-  watch:{
-        todoList:{
-          deep:true,
-          handler(todo){
-            localStorage.setItem('todoList',JSON.stringify(todo))
-          }
-        }
-  },
-  }
+}
 </script>
 
 
-  <!-- // components:{SchoolInfo,NinJaInfo},
-  // data(){
-  //   return{
-  //     msg:'风遁！螺旋手里剑'
-  //   }
-  // },
-  // methods:{
-  //   showDom(){
-  //     console.log(this.$refs.title) // 真实dom元素
-  //     console.log(this.$refs.btn)   // 真实dom元素
-  //     console.log(this.$refs.schoolInfo) // school组件的实例对象(VC)
-  //   }
-  // }     -->
 
 <style>
-/*base*/
-body {
-  background: #fff;
-}
-
-.btn {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
-}
-
-.btn-danger:hover {
-  color: #fff;
-  background-color: #bd362f;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-/*header*/
-
-/*main*/
-
-/*item*/
-
-
-/*footer*/
-
-
 </style>
 
 <!-- ref属性

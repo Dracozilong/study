@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { tip } from '@/mixin';
 
 export default {
    name:'SchoolInfo',
@@ -15,8 +14,7 @@ export default {
      team:'六番队',
      captain:'朽木白哉'
     }
-   },
-   mixins:[tip]
+   }
 }
 </script>
 
